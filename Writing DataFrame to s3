@@ -1,0 +1,15 @@
+import boto3
+import awswrangler as wr
+raw_bucket = 'salesanalyticssparkjob'
+raw_path_dir = 'Sales'
+raw_path = f"s3://{raw_bucket}/{raw_path_dir}"
+
+
+df_csv = wr.s3.read_csv(path=raw_path, path_suffix=['.csv'],dataset=True)
+
+s3 = boto3.resource('s3',
+         aws_access_key_id='AKIA5CFINZPMT4D5PI6Y',
+         aws_secret_access_key= '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')
+
+
+df_csv.head()
