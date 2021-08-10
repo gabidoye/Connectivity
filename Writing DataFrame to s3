@@ -13,3 +13,18 @@ s3 = boto3.resource('s3',
 
 
 df_csv.head()
+
+
+
+##### Write to ODBC
+#Write data to database
+#./bin/pyspark --packages org.postgresql:postgresql:42.1.1
+
+jdbcDF1 = spark.read.format("jdbc").option("url", "jdbc:postgresql:dvdrental") .option("dbtable", "public.actor") .option("user", "postgres") .option("password", "Oracle987").load()
+        
+jdbcDF2 = (spark.read.format("jdbc")\
+        .option("url", "jdbc:postgresql://localhost:5432/dvdrental") .option("dbtable", "public.actor")\
+        .option("user", "postgres") .option("password", "Oracle987")\
+        .load())
+
+
